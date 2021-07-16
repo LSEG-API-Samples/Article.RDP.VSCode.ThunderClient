@@ -60,7 +60,7 @@ Please find more detail regarding RDP APIs workflow in the following resources:
 
 Firstly, open the VSCode editor and click the ```Extensions``` button, then search the **Thunder Client** extension and click install it.
 
-![Figure-1](images/1_thunderclient_install.png "REST Client extension") 
+![Figure-1](images/1_thunderclient_install.png "Thunder Client extension installation") 
 
 ### <a id="create_collection"></a>Creating Collection
 
@@ -300,7 +300,7 @@ This example project contains the following files and folders
 4. *LICENSE.md*: Project's license file.
 5. *README.md*: Project's README file.
 
-## <a id="project_setup"></a>VSCode REST Client and Project Setup
+## <a id="project_setup"></a>VSCode Thunder Client and Project Setup
 
 1. Once you have unzipped or downloaded the example project folder into a directory of your choice, you can set up the VSCode Thunder Client extension with the step from the [above section](#setup).
 2. Then import the *thunder-collection_RDP APIs Collection.json* and *thunder-environment_RDP APIs Environment.json* files to Thunder Client with the steps from the [import section](#import_requests).
@@ -313,6 +313,8 @@ Now the VSCode editor is ready to request data from RDP REST APIs.
 You may think "why would I bother to use this extension when I already have a Postman". The Postman is a complete platform for API testing and development so it has many more features than this extension. However, this VSCode: Thunder Client extension lets developers who are using this editor do a quick REST API test call such as test various API query parameters, test new Service URL, or test different credentials *in the same tool that they are developing the application* with the simple GUI interface. Developers do not need to switch a tool or write a script for a quick REST API query test anymore. 
 
 This extension helps RDP APIs developers (either who use the REST API directly or [RDP Libraries](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-libraries) with Visual Studio Code to implement application a smooth and seamless workflow.
+
+*Note*: The another VS Code REST API extension that I recommend is the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for those who love to write simple scripts to test the HTTP REST APIs. Please see more detail about the REST Client extension on [this article](https://medium.com/refinitiv-developer-community/how-to-test-rest-api-with-visual-studio-code-rest-client-extensions-9f2e061d0299).
 
 ## <a id="references"></a>References
 For further details, please check out the following resources:
