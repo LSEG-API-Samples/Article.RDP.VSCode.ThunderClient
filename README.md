@@ -1,4 +1,4 @@
-# How to test REST API easily with Visual Studio Code - Thunder Client extensions
+# How to test HTTP REST API easily with Visual Studio Code - Thunder Client extensions
 - version: 1.0
 - Last update: July 2021
 - Environment: Windows
@@ -239,7 +239,7 @@ The current active Environment will display a star icon next to the Environment 
 
 ![Figure-27](images/27_thunderclient_multi_envs_2.png "Set Multiple Envs")
 
-##### <a id="code_generator"></a>Code Generator
+### <a id="code_generator"></a>Code Generator
 
 The extension lets you generate a code snippet from the request by opening the request view and click the *{}* in the right panel to show the Code tab.
 
