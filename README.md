@@ -1,6 +1,6 @@
 # How to test HTTP REST API easily with Visual Studio Code - Thunder Client extensions
-- version: 1.0
-- Last update: July 2021
+- version: 2.0
+- Last update: January 2025
 - Environment: Windows
 - Prerequisite: [Access to RDP credentials](#prerequisite) and [Visual Studio Code](https://code.visualstudio.com/)
 
@@ -8,11 +8,13 @@
 
 [Visual Studio Code](https://code.visualstudio.com/) (or just VSCode) is a free source code editor developed and maintained by [Microsoft](https://github.com/Microsoft/vscode). This cross-platform editor took over developers' popularity based on its fast and lightweight, supports a variety of programming languages with IntelliSense (a feature that borrows from its sibling, Visual Studio IDE), and supports complete development operations like debugging, task running, and version control.
 
-VSCode also supports a lot of extensions that extend the editor features and development workflows such as code linters or testing tools such as [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client), etc. The [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) is the lightweight Rest API Client Extension that allows developers to test HTTP request and view the response message with a clean and simple GUI interface in VSCode directly.
+VSCode also supports a lot of extensions that extend the editor features and development workflows such as code linters or testing tools such as [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client), etc. The [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) ([Official website](https://www.thunderclient.com/))  is the lightweight Rest API Client Extension that allows developers to test HTTP request and view the response message with a clean and simple GUI interface in VSCode directly.
 
-This article demonstrates how to use the Thunder Client extension in VSCode by using [Refinitiv Data Platform (RDP) APIs](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) as an example HTTP REST API. Developers who currently use VSCode to implement the RDP APIs application (with any languages) can use this extension to test the RDP APIs query, endpoint without switching to other tools like [Postman](https://www.postman.com/) or [cURL](https://curl.haxx.se/).
+This article demonstrates how to use the Thunder Client extension in VSCode by using [Delivery Platform (RDP) APIs](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) (previously known as Refinitiv Data Platform) as an example HTTP REST API. Developers who currently use VSCode to implement the RDP APIs application (with any languages) can use this extension to test the RDP APIs query, endpoint without switching to other tools like [Postman](https://www.postman.com/) or [cURL](https://curl.haxx.se/).
 
-Note: RDP APIs developers still need [RDP APIs Playground page](https://api.refinitiv.com) to get the APIs document and information.
+Note: RDP APIs developers still need [RDP APIs Playground page](https://apidocs.refinitiv.com/Apps/ApiDocs) to get the APIs document and information.
+
+**As Of January 2025**: [Thunder Client pricing plan has been updated](https://www.thunderclient.com/pricing). The free version is for non-commercial use only with [limitations](https://www.thunderclient.com/pricing#compare).
 
 ## <a id="prerequisite"></a>Prerequisite
 This demo project requires the following dependencies software.
@@ -21,13 +23,13 @@ This demo project requires the following dependencies software.
 3. [VSCode: Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) extension.
 4. Internet connection.
 
-Please contact your Refinitiv's representative to help you to access Refinitiv Data Platform credentials. You can follow the step-by-step guide to complete your RDP credentials setup from the *Getting Started for User ID* section of the [Getting Start with Refinitiv Data Platform](https://developers.refinitiv.com/en/article-catalog/article/getting-start-with-refinitiv-data-platform) article.
+Please contact your LSEG representative to help you to access RDP credentials. You can follow the step-by-step guide to complete your RDP credentials setup from the *Getting Started for User ID* section of the [Getting Start with RDP](https://developers.lseg.com/en/article-catalog/article/getting-start-with-refinitiv-data-platform) article.
 
-## <a id="whatis_rdp"></a>What is Refinitiv Data Platform (RDP) APIs?
+## <a id="whatis_rdp"></a>What is RDP APIs?
 
-The [Refinitiv Data Platform (RDP) APIs](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) provide various Refinitiv data and content for developers via easy to use Web based API.
+The [Delivery Platform (RDP) APIs](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) (previously known as Refinitiv Data Platform) provide various LSEG data and content for developers via easy to use Web based API.
 
-RDP APIs give developers seamless and holistic access to all of the Refinitiv content such as Historical Pricing, Environmental Social and Governance (ESG), News, Research, etc and commingled with their content, enriching, integrating, and distributing the data through a single interface, delivered wherever they need it.  The RDP APIs delivery mechanisms are the following:
+RDP APIs give developers seamless and holistic access to all of the LSEG content such as Historical Pricing, Environmental Social and Governance (ESG), News, Research, etc and commingled with their content, enriching, integrating, and distributing the data through a single interface, delivered wherever they need it.  The RDP APIs delivery mechanisms are the following:
 * Request - Response: RESTful web service (HTTP GET, POST, PUT or DELETE) 
 * Alert: delivery is a mechanism to receive asynchronous updates (alerts) to a subscription. 
 * Bulks:  deliver substantial payloads, like the end of day pricing data for the whole venue. 
@@ -35,14 +37,14 @@ RDP APIs give developers seamless and holistic access to all of the Refinitiv co
 
 This example project is focusing on the Request-Response: RESTful web service delivery method only.  
 
-For more detail regarding Refinitiv Data Platform, please see the following APIs resources: 
-- [Quick Start](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start) page.
-- [Tutorials](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials) page.
+For more detail regarding RDP APIs, please see the following APIs resources: 
+- [Quick Start](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/quick-start) page.
+- [Tutorials](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials) page.
 
 
 ## <a id="rdp_workflow"></a>RDP APIs Application Workflow
 
-Refinitiv Data Platform entitlement check is based on OAuth 2.0 specification. The first step of an application workflow is to get a token from RDP Auth Service, which will allow access to the protected resource, i.e. data REST API's. 
+RDP APIs entitlement check is based on OAuth 2.0 specification. The first step of an application workflow is to get a token from RDP Auth Service, which will allow access to the protected resource, i.e. data REST API's. 
 
 Next, after the application received the Access Token (an authorization token) from RDP Auth Service, all subsequent REST API calls will use this token to get the data. The application needs to input Access Token via *Authorization* HTTP request message header as shown below. 
 - Header: 
@@ -51,8 +53,9 @@ Next, after the application received the Access Token (an authorization token) f
 Please notice *the space* between the ```Bearer``` and ```RDP Access Token``` values.
 
 Please find more detail regarding RDP APIs workflow in the following resources:
-- [RDP APIs: Introduction to the Request-Response API](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#introduction-to-the-request-response-api) page.
-- [RDP APIs: Authorization - All about tokens](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all-about-tokens) page.
+- [RDP APIs: Introduction to the Request-Response API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#introduction-to-the-request-response-api) page.
+- [RDP APIs: Authorization - All about tokens](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all-about-tokens) page.
+- [Changes to Customer Access and Identity Management: Version 2 Authentication](https://developers.lseg.com/en/article-catalog/article/changes-to-customer-access-and-identity-management--refinitiv-re) article.
 
 ## <a id="howto_thunderclient"></a>How to use VSCode Thunder Client extension
 
@@ -119,6 +122,8 @@ And click the Send button to send the HTTP request message. The result will be d
 
 ![Figure-10](images/10_thunderclient_req_5.png "RDP Auth result")
 
+**Note**: This example is based on the Version 1 Authentication. You can find more detail about the Version 2 Authentication from [Changes to Customer Access and Identity Management: Version 2 Authentication](https://developers.lseg.com/en/article-catalog/article/changes-to-customer-access-and-identity-management--refinitiv-re) article.
+
 ### <a id="test"></a>Creating Test
 
 The Thunder Client also supports the scriptless testing feature that lets you create basic tests via GUI-based without any manual script like the Postman. You can create the test cases in the Tests tab.
@@ -153,7 +158,7 @@ Now you can use the ```{{access_token}}``` refer to the RDP Auth Access Token in
 
 ### <a id="http_get"></a>Creating HTTP Get Request
 
-The next step is creating the HTTP Get request example. We will use the RDP ESG (Environmental, Social, and Governance) scores-full API as an example API call. The ESG scores-full provides full coverage of Refinitiv's proprietary ESG Scores with full history for consumers.
+The next step is creating the HTTP Get request example. We will use the RDP ESG (Environmental, Social, and Governance) scores-full API as an example API call. The ESG scores-full provides full coverage of LSEG's proprietary ESG Scores with full history for consumers.
 
 Firstly, let's create a new folder name *ESG* inside the RDP APIs Collection by clicking the *...* menu and choose the *New Folder* option.
 
@@ -181,7 +186,7 @@ Then click the send button to send the HTTP request message, the result will be 
 
 ### <a id="http_post"></a>Creating HTTP Post Request
 
-The next step is creating the HTTP Post request example. We will use the RDP Symbology API as an example API call. The API enables customers to map from external identifiers to a Refinitiv PermID and to navigate between a wide range of identifiers.  
+The next step is creating the HTTP Post request example. We will use the RDP Symbology API as an example API call. The API enables customers to map from external identifiers to a LSEG PermID and to navigate between a wide range of identifiers.  
 
 Firstly, let's create a new folder name *Symbology* inside the RDP APIs Collection by clicking the *...* menu and choose the *New Folder* option. Then create new variables ```rdp_version_symbology``` with ```v1``` value. 
 
@@ -196,7 +201,7 @@ Next, create a new HTTP request name *Identifier to PermID* inside the Symbology
 
 Then select the Request Body tab under the request message, choose *Json* and input the following JSON request message to the body text area. This JSON request message is for requesting the Organization PermID of Toyota Motor Corp (*7203.T*) and Tesla, Inc. companies. Please noticed that you can use the variable ```{{symbol}}``` (which is currently store *TSLA.O* instrument) in the request message body too. 
 
-```
+``` json
 {
   "from": [
     {
@@ -276,7 +281,7 @@ You can click the Collection/Env menu and choose the *Import* option.
 
 ### <a id="import_postman"></a>Importing Postman Request Collections and Environments 
 
-The VSCode Thunder Client extension supports the Collection and Environment files from Postman 2.1.0 format. The RDP APIs have the Postman Starter Collection and Tutorials Samples for developers on the [RDP APIs download page](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/download). The package contains the following files:
+The VSCode Thunder Client extension supports the Collection and Environment files from Postman 2.1.0 format. The RDP APIs have the Postman Starter Collection and Tutorials Samples for developers on the [RDP APIs download page](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/download). The package contains the following files:
 - *RDP.postman_collection_{date}.json*: The RDP APIs collection file
 - *RDP Env Starter.postman_environment_{date}.json*: The RDP APIs environment file
 
@@ -312,18 +317,21 @@ Now the VSCode editor is ready to request data from RDP REST APIs.
 
 You may think "why would I bother to use this extension when I already have a Postman". The Postman is a complete platform for API testing and development so it has many more features than this extension. However, this VSCode: Thunder Client extension lets developers who are using this editor do a quick REST API test call such as test various API query parameters, test new Service URL, or test different credentials *in the same tool that they are developing the application* with the simple GUI interface. Developers do not need to switch a tool or write a script for a quick REST API query test anymore. 
 
-This extension helps RDP APIs developers (either who use the REST API directly or [RDP Libraries](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-libraries) with Visual Studio Code to implement application a smooth and seamless workflow.
+This extension helps RDP APIs developers (either who use the REST API directly or [Data Library](https://developers.lseg.com/en/api-catalog/lseg-data-platform/lseg-data-library-for-python)) with Visual Studio Code to implement application a smooth and seamless workflow.
 
 *Note*: The another VS Code REST API extension that I recommend is the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for those who love to write simple scripts to test the HTTP REST APIs. Please see more detail about the REST Client extension on [this article](https://medium.com/refinitiv-developer-community/how-to-test-rest-api-with-visual-studio-code-rest-client-extensions-9f2e061d0299).
 
 ## <a id="references"></a>References
+
 For further details, please check out the following resources:
-* [Refinitiv Data Platform APIs page](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) on the [Refinitiv Developer Community](https://developers.refinitiv.com/) website.
-* [Refinitiv Data Platform APIs Playground page](https://api.refinitiv.com).
-* [Refinitiv Data Platform APIs: Introduction to the Request-Response API](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#introduction-to-the-request-response-api).
-* [Refinitiv Data Platform APIs: Authorization - All about tokens](https://developers.refinitiv.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all-about-tokens).
+
+* [Delivery Platform (RDP) APIs page](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis) on the [LSEG Developers Community](https://developers.lseg.com/) website.
+* [RDP APIs Playground page](https://apidocs.refinitiv.com/Apps/ApiDocs).
+* [RDP APIs: Introduction to the Request-Response API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#introduction-to-the-request-response-api).
+* [RDP APIs: Authorization - All about tokens](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all-about-tokens).
+- [Changes to Customer Access and Identity Management: Version 2 Authentication](https://developers.lseg.com/en/article-catalog/article/changes-to-customer-access-and-identity-management--refinitiv-re) article.
 * [Visual Studio Code product page](https://code.visualstudio.com/)
 * [Introduction to Thunder Client blog](https://rangav.medium.com/thunder-client-alternative-to-postman-68ee0c9486d6).
 * [VSCode: Thunder Client product page](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) and [GitHub](https://github.com/rangav/thunder-client-support).
 
-For any questions related to Refinitiv Data Platform, please use the Developers Community [Q&A Forum](https://community.developers.refinitiv.com/spaces/231/index.html).
+For any questions related to the Delivery Platform, please use the Developers Community [Q&A Forum](https://community.developers.refinitiv.com).
