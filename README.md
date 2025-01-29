@@ -329,7 +329,7 @@ For further details, please check out the following resources:
 * [RDP APIs Playground page](https://apidocs.refinitiv.com/Apps/ApiDocs).
 * [RDP APIs: Introduction to the Request-Response API](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#introduction-to-the-request-response-api).
 * [RDP APIs: Authorization - All about tokens](https://developers.lseg.com/en/api-catalog/refinitiv-data-platform/refinitiv-data-platform-apis/tutorials#authorization-all-about-tokens).
-- [Changes to Customer Access and Identity Management: Version 2 Authentication](https://developers.lseg.com/en/article-catalog/article/changes-to-customer-access-and-identity-management--refinitiv-re) article.
+* [Changes to Customer Access and Identity Management: Version 2 Authentication](https://developers.lseg.com/en/article-catalog/article/changes-to-customer-access-and-identity-management--refinitiv-re) article.
 * [Visual Studio Code product page](https://code.visualstudio.com/)
 * [Introduction to Thunder Client blog](https://rangav.medium.com/thunder-client-alternative-to-postman-68ee0c9486d6).
 * [VSCode: Thunder Client product page](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client) and [GitHub](https://github.com/rangav/thunder-client-support).
